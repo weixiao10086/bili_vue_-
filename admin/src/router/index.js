@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 import Main from '@/views/Main'
 import Home from '@/views/Home'
 import CoursesList from '@/views/courses/CoursesList'
-import CoursesEdit from '@/views/courses/CoursesEdit'
+import EpisodesEdit from '@/views/episodes/EpisodesEdit'
 import EpisodesList from '@/views/episodes/EpisodesList'
 
 export default new VueRouter({
@@ -26,16 +26,16 @@ export default new VueRouter({
                     component: CoursesList
                 },
                 {
-                    name: 'course-edit',
-                    path: '/course/edit/:id',
-                    component: CoursesEdit,
+                    name: 'episodes-edit',
+                    path: '/episodes/edit/:id',
+                    component: EpisodesEdit,
                     //传给页面的路由参数的id
                     props:true
                 },
                 {
-                    name: 'courses-create',
-                    path: '/courses/create',
-                    component: CoursesEdit
+                    name: 'episodes-create',
+                    path: '/episodes/create',
+                    component: EpisodesEdit
                 },
                 {
                     name: 'episodes-list',
