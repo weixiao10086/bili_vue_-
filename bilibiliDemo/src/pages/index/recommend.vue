@@ -16,12 +16,12 @@
     <div class="videoBox">
       <div
         v-for="(item, index) in videoList"
-        :key="index"
+        :key="item._id"
         class="box"
         @click="seeView(item._id)"
       >
         <div class="imgBox">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="item.file" alt="" />
           <div class="mask"></div>
           <div class="vInfo">
             <div class="disflex">
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="downBox">
-          <p class="vname">{{ item.videoName }}</p>
+          <p class="vname">{{ item.name }}</p>
           <div class="upBox">
             <div class="disflex">
               <div class="upImg">
@@ -91,13 +91,14 @@ export default {
     },
   },
   mounted() {
-    this.axios.get("videoList").then((res) => {
-      this.videoList = res;
-    });
-    this.axios.get("indexswiper").then((res) => {
-      this.swiperImg = res;
+    this.axios.get("course").then((res) => {
       console.log(res);
+      this.videoList = res.data;
     });
+    // this.axios.get("indexswiper").then((res) => {
+    //   this.swiperImg = res;
+    //   console.log(res);
+    // });
   },
 };
 </script>
@@ -132,6 +133,13 @@ img {
     font-weight: 500;
     font-family: SimHei;
   }
+  &>img{
+    height: 150px;
+    display: flex;
+    @media screen and (min-width:768px){
+      height: 300px;
+    }
+  }
 }
 .videoBox {
   display: flex;
@@ -145,7 +153,8 @@ img {
     border-radius: 5px;
     margin-bottom: 10px;
     box-shadow: 0px 5px 12px 1px rgba(202, 202, 202, 0.3);
-    .imgBox {
+ .imgBox {
+
       position: relative;
       .mask {
         position: absolute;
@@ -170,6 +179,7 @@ img {
         left: 0;
         img {
           width: 20px;
+
         }
         .vInfotxt {
           font-size: 12px;
@@ -181,6 +191,7 @@ img {
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
       width: 100%;
+      
     }
     .downBox {
       padding: 8px;

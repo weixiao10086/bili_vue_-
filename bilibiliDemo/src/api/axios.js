@@ -5,7 +5,8 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 
 var $axios = axios.create({
-    baseURL: 'http://81.68.198.249:3002/',
+    // baseURL: 'http://81.68.198.249:3000/',
+    baseURL: 'http://localhost:3000/',
     timeout: 5000,
 });
 // console.log('axios', this)
