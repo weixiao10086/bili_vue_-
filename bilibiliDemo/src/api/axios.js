@@ -6,7 +6,7 @@ Vue.use(VueCookies)
 
 var $axios = axios.create({
     // baseURL: 'http://81.68.198.249:3000/',
-    baseURL: 'http://localhost:3000/',
+    baseURL: 'http://localhost:3001/',
     timeout: 5000,
 });
 // console.log('axios', this)
@@ -30,7 +30,7 @@ $axios.interceptors.response.use(function (response) {
     // Do something with response data
     // console.log('response');
     // console.log(response);
-    if (response.status == 200) {
+    if ((response.status == 200)||(response.status == 201)) {
         return response.data
     } else {
         alert('服务器出错')

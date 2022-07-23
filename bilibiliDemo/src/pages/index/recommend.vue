@@ -7,9 +7,9 @@
       indicator-position="none"
     >
       <el-carousel-item v-for="(item, index) in swiperImg" :key="index">
-        <div class="imgBox">
-          <img :src="item.url" alt="" class="swiperImg" />
-          <p class="infotxt">{{ item.txt }}</p>
+        <div class="imgBox swiperimgbox">
+          <img :src="item.file" alt="" class="swiperImg" />
+          <p class="infotxt">{{ item.title }}</p>
         </div>
       </el-carousel-item>
     </el-carousel>
@@ -38,7 +38,7 @@
                 <p class="vInfotxt">{{ item.popups }}</p>
               </div>
             </div>
-            <p class="vInfotxt">{{ item.time }}</p>
+            <p class="vInfotxt">{{ item.updatedAt }}</p>
           </div>
         </div>
         <div class="downBox">
@@ -95,10 +95,11 @@ export default {
       console.log(res);
       this.videoList = res.data;
     });
-    // this.axios.get("indexswiper").then((res) => {
-    //   this.swiperImg = res;
-    //   console.log(res);
-    // });
+    this.axios.get("swiperimg").then((res) => {
+      this.swiperImg = res.data;
+      console.log(res);
+      console.log(res);
+    });
   },
 };
 </script>
@@ -134,7 +135,16 @@ img {
     font-family: SimHei;
   }
   &>img{
-    height: 150px;
+    height: 100px;
+    display: flex;
+    @media screen and (min-width:768px){
+      height: 300px;
+    }
+  }
+}
+.swiperimgbox{
+    &>img{
+    height: 220px;
     display: flex;
     @media screen and (min-width:768px){
       height: 300px;

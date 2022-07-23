@@ -5,8 +5,9 @@
         <img :src="avatar" alt="" />
       </div>
       <div class="sele">
-        <img src="@/assets/images/sele.png" alt="" />
-        <span>{{ place }}</span>
+        <img @click="search" src="@/assets/images/sele.png" alt="" />
+        <!-- <span>{{ place }}</span> -->
+        <input type="text" class='input'>
       </div>
       <div class="game">
         <img src="@/assets/images/game-icon.png" alt="" />
@@ -66,7 +67,12 @@ export default {
       ],
     };
   },
-};
+ methods:{
+  search(){
+  this.$router.push('/search')
+ }
+}
+}
 </script>
 
 <style lang="less" scoped>
@@ -144,5 +150,14 @@ export default {
       }
     }
   }
+}
+input{
+      width: 100%;
+    height: 30px;
+    background-color: #efeeee;
+    border-radius: 20px;
+    position: relative;
+    padding: 0;
+    border: #efeeee;
 }
 </style>
