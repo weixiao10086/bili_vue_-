@@ -8,6 +8,7 @@ import Home from '@/views/Home'
 import CoursesList from '@/views/courses/CoursesList'
 import EpisodesEdit from '@/views/episodes/EpisodesEdit'
 import EpisodesList from '@/views/episodes/EpisodesList'
+import SwiperimgList from '@/views/swiperimg/Swiperimg'
 
 export default new VueRouter({
     routes: [
@@ -24,6 +25,11 @@ export default new VueRouter({
                     name: 'course-list',
                     path: '/course/list',
                     component: CoursesList
+                },
+                {
+                    name: 'swiperimg-list',
+                    path: '/swiperimg/list',
+                    component: SwiperimgList
                 },
                 {
                     name: 'episodes-edit',

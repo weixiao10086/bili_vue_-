@@ -48,6 +48,7 @@ export default {
                 { title: "首页", path: "/" },
                 { title: "课程管理", path: "/course/list" },
                 { title: "课时管理", path: "/episodes/list" },
+                { title: "首页轮播图管理", path: "/swiperimg/list" },
                 ]
           },
           {
