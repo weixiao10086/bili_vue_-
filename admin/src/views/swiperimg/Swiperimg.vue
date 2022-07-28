@@ -145,7 +145,6 @@ export default {
       } catch (error) {
         this.$message.success("获取失败");
       }
-      this.data = result.data;
     },
     handleSizeChange(limit) {
       this.query.limit = limit;

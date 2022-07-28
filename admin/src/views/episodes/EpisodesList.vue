@@ -3,7 +3,6 @@
 <template>
   <div>
     <h3>课时列表</h3>
-
     <el-button type="success" size="mini" @click="dialogFormVisible = true"
       >创建课时</el-button
     >
@@ -20,6 +19,13 @@
       <el-table-column prop="file" label="所属课程">
         <template slot-scope="{ row, $index }">
           {{ row.course.name }}
+          <!-- {{course_name }} -->
+        </template>
+      </el-table-column>
+      <el-table-column prop="file" label="视频">
+        <template slot-scope="{ row, $index }">
+          <!-- <video :src="row.file" type="video/mp4" controls="controls"></video> -->
+          <img :src="row.file" />
         </template>
       </el-table-column>
 
@@ -45,27 +51,29 @@
         </el-form-item>
         <div class="box">
           <span>{{ fileds.course.label }}</span>
-          <el-select v-model="course_data" placeholder="">
+          <!-- !!!!!!!!!!! -->
+          <el-select  v-model="row" placeholder="">
+             <!-- !!!!!!!!!!! -->
             <el-option
               v-for="item in course"
               :key="item._id"
-              :label="item.label"
-              :value="item"
+              :label="item.name"
+              :value="item.label"
             >
             </el-option>
           </el-select>
         </div>
-        <!-- <el-form-item label="文件">
+        <el-form-item label="文件">
           <el-upload
             action="http://81.68.198.249:3000/upload"
             list-type="picture-card"
-            :on-success="uploadsSuccess"
             ref="upload"
+            :on-success="uploadsSuccess"
           >
             <img v-if="row.file" :src="row.file" class="avatar" />
             <i class="el-icon-plus" v-else></i>
           </el-upload>
-        </el-form-item> -->
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="episodesfalse">取 消</el-button>
@@ -101,26 +109,19 @@ export default {
     async fetch() {
       this.option_course();
       try {
-        const result = await this.$http.get("episodes", {});
+        const result = await this.$http.get("episodes", {
+              params: {
+            //关联查询
+            query: {populate:'course'}
+          }
+        });
         this.data = result.data;
       } catch (error) {
         this.$message.success("获取失败");
       }
-      if (this.data.data.length != 0) {
-        this.data.data.map((v) => {
-          this.course.map((k) => {
-            if (v.course == k.value) {
-              v.course = {
-                _id: v._id,
-                name: k.label,
-              };
-            }
-          });
-        });
-      }
-      console.log(this.data.data);
     },
     handleEdit(index, row) {
+      console.log(row)
       this.row = row;
       this.dialogFormVisible = true;
       // this.$router.push(`/episodes/edit/${row._id}`);
@@ -138,13 +139,20 @@ export default {
     episodesfalse() {
       this.dialogFormVisible = false;
     },
+    uploadsSuccess(file) {
+      console.log(file);
+      this.row.file = file.url;
+      console.log(thi.row);
+    },
     async episodestrue() {
+      this.$refs.upload.clearFiles();
       const data = {
         name: this.row.name,
         course: {
           _id: this.row._id || this.course_data.value,
           // name: this.course_data.label,
         },
+        file: this.row.file,
       };
       const url = !this.row._id ? `episodes` : `episodes/${this.row._id}`;
       const method = !this.row._id ? "post" : "put";
@@ -163,9 +171,21 @@ export default {
       this.course = result.data;
     },
   },
+  computed:{
+    // course_name(){
+    //   this.data.data.map((v)=>{
+    //     this.course.map((k) => {
+    //           if (v.course == k.value) {
+    //             v.course2=k.label
+    //           }
+    //         });
+    //   })
+    //   return this.data.data+'1'
+    // }
+  }
 };
 </script>
-<style scoped>
+<style scoped >
 .box {
   display: flex;
   margin-bottom: 20px;
@@ -178,4 +198,19 @@ export default {
   justify-content: end;
   padding-right: 12px;
 }
+.el-upload img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+
+}
+img{
+     max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+
 </style>

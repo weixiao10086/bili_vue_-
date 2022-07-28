@@ -133,10 +133,9 @@ export default {
       this.row = {};
       try {
         const result = await this.$http.get("course", {
-          // params: {
-          //   query: this.query,
-          // },
-      
+          params: {
+            query: this.query,
+          },      
         });
         this.lastPage = result.data.lastPage;
         this.page = result.data.page;
@@ -145,7 +144,6 @@ export default {
       } catch (error) {
         this.$message.success("获取失败");
       }
-      this.data = result.data;
     },
     handleSizeChange(limit) {
       this.query.limit = limit;

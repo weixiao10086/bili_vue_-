@@ -1,0 +1,12 @@
+# POST  http://127.0.0.1:7001/add
+# POST  http://127.0.0.1:7001/newContext
+# GET    http://81.68.198.249:3000/coffees
+POST     http://localhost:3000/episodes
+Content-Type: application/json
+# token:'wlwlwwlwl'
+
+{
+  "name": "封面1",
+  "file": "文件",
+  "course": "{name:课程名称1}"
+}
