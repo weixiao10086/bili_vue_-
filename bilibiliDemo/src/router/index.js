@@ -57,7 +57,6 @@ router.beforeEach( (to,from,next)=>{
         }
     }else{
         if(to.path=='/personinit'){
-            console.log(111);
             next('/login')
         }else{
             next()

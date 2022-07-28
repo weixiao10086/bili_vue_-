@@ -6,8 +6,8 @@
       </div>
       <div class="sele">
         <img @click="search" src="@/assets/images/sele.png" alt="" />
-        <!-- <span>{{ place }}</span> -->
-        <input type="text" class='input'>
+        <span>搜索内容</span>
+        <!-- <input type="text" class='input' placeholder="搜索内容"/> -->
       </div>
       <div class="game">
         <img src="@/assets/images/game-icon.png" alt="" />
@@ -102,6 +102,7 @@ export default {
     border-radius: 20px;
     position: relative;
     padding-left: 38px;
+    display: flex;
     img {
       position: absolute;
       top: 50%;

@@ -32,6 +32,8 @@
       </el-form-item>
     </el-form>
   </div>
+
+  
 </template>
 
 <script>
@@ -76,6 +78,7 @@ export default {
              this.$message({message:"登录成功",type:'success',duration:'1000'});
             this.$router.push("/personinit");
           });
+          // this.$store.dispatch("userLogin", this.ruleForm);
         } else {
           return false;
         }
@@ -86,16 +89,24 @@ export default {
     },
     register(formName) {
       this.$refs[formName].validate((valid) => {
-        console.log(valid);
         if (valid) {
-          const { username, password } = this.ruleForm;
-          this.axios
-            .post("auth/register", { username, password })
-            .then((res) => {
-              console.log(res);
-              this.$message({message:"注册成功",type:'success',duration:'1000'});
-            });
+          // const { username, password } = this.ruleForm;
+          // this.axios
+          //   .post("auth/register", { username, password })
+          //   .then((res) => {
+          //     console.log(res);
+          //     this.$message({
+          //       message: "注册成功",
+          //       type: "success",
+          //       duration: "1000",
+          //     });
+          //   });
+
+          this.$store.dispatch("reqregister", this.ruleForm);
+          this.resetForm("ruleForm");
+          this.$message({ type: "success", message: "注册成功" });
         } else {
+          this.$message({ type: "warning", message: "注册失败" });
           return false;
         }
       });

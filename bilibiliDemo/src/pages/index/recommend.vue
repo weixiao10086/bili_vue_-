@@ -20,7 +20,7 @@
         class="box"
         @click="seeView(item._id)"
       >
-        <div class="imgBox">
+        <div class="imgBox" @click='details(item)'>
           <img :src="item.file" alt="" />
           <div class="mask"></div>
           <div class="vInfo">
@@ -87,19 +87,28 @@ export default {
       console.log(123);
     },
     seeView(i) {
-      console.log(i);
+      this.$router.push(`/indexpage/details/${i}`)
     },
-  },
-  mounted() {
-    this.axios.get("course").then((res) => {
-      console.log(res);
+    course(){
+       this.axios.get("course").then((res) => {
+      // console.log(res);
       this.videoList = res.data;
     });
-    this.axios.get("swiperimg").then((res) => {
+    },
+    swiperimg(){
+        this.axios.get("swiperimg").then((res) => {
       this.swiperImg = res.data;
       console.log(res);
-      console.log(res);
     });
+    },
+    details(item){
+    // console.log(item)
+    }
+  },
+  mounted() {
+  this.course()
+  this.swiperimg()
+  
   },
 };
 </script>

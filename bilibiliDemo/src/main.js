@@ -14,7 +14,23 @@ Vue.use(ElementUI);
 import axios from "./api/axios";
 Vue.prototype.axios = axios;
 
+// 引入仓库（Vuex相关
+import store from '@/store'
+
+//统一引入api文件夹里面全部请求函数
+import * as API from '@/api';
+
+import '@/assets/js/rem.js'
+
+
 new Vue({
   render: h => h(App),
-  router
+  beforeCreate(){
+    Vue.prototype.$bus=this;
+
+//统一接收api文件夹里面全部请求函数的挂载到vue原型对象上
+    Vue.prototype.$API=API;
+  },
+  router,
+  store
 }).$mount('#app')

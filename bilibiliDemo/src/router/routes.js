@@ -6,9 +6,10 @@ import recommend from '../pages/index/recommend.vue'
 import liveStreaming from '../pages/index/liveStreaming.vue'
 import serialNumber from '../pages/index/serialNumber.vue'
 import Login from '@/pages/personCenter/login.vue'
-import Search from '@/pages/index/search.vue'
+import Search from '@/pages/index/search/search.vue'
 
-export default  [
+
+export default [
     {
         //初始页面路由设置
         path: '',
@@ -17,43 +18,64 @@ export default  [
     {
         path: '/indexpage',
         component: indexPage,
+        meta: {
+            topshow: true,
+            footershow: true
+        },
         children: [
             {
                 path: '',
-                redirect: 'recommend'
+                redirect: 'recommend',
+                meta: { topshow: true, footershow: true },
             },
             {
                 path: 'recommend',
-                component: recommend
+                component: recommend,
+                meta: { topshow: true,footershow: true },
             },
             {
                 path: 'liveStreaming',
-                component: liveStreaming
+                component: liveStreaming,
+                meta: { topshow: true , footershow: true},
             },
             {
                 path: 'serialNumber',
-                component: serialNumber
-            }
+                component: serialNumber,
+                meta: { topshow: true, footershow: true },
+            },
+            //  {
+            //     path: 'details/:id',
+            //     component: Details,
+            //     meta: { topshow: false, footershow: true },
+            //        //传给页面的路由参数的id
+            //        props:true
+            // },
         ]
     },
     {
         path: '/dynamic',
-        component: dynamic
+        component: dynamic,
+        meta: { topshow: false , footershow: true},
     },
     {
         path: '/personinit',
-        component: personInit
+        component: personInit,
+        meta: { topshow: false , footershow: true},
     },
     {
         path: '/vippurchase',
-        component: vipPurchase
+        component: vipPurchase,
+        meta: { topshow: false, footershow: true },
     },
     {
         path: '/search',
-        component: Search
+        component: Search,
+        meta: { topshow: false, footershow: false },
     },
     {
         path: '/login',
-        component: Login
+        component: Login,
+        meta: { topshow: false, footershow: true },
     },
+   
 ]

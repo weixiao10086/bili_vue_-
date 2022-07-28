@@ -1,16 +1,16 @@
 <template>
   <div>
-    <indexNav />
+    <!-- <indexNav /> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import indexNav from "@/components/indexNav.vue";
+// import indexNav from "@/components/indexNav.vue";
 export default {
   beforeDestroy() {},
   components: {
-    indexNav,
+    // indexNav,
   },
 };
 </script>
